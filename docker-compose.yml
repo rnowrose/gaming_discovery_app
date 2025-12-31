@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  game-db:
+    image: postgres:13
+    environment: 
+      POSTGRES_USER: rownokn-dev
+      POSTGRES_PASSWORD: rownokP@ss
+      POSTGRES_DB: rownok-admin-dev
+      POSTGRES_MULTIPLE_DATABASES: gaming_discovery_app_development
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  game-discovery-app:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - game-db
+    environment:
+      DATABASE_HOST: game-db
+      DATABASE_USERNAME: rownokn-dev
+      DATABASE_PASSWORD: rownokP@ss
+      DATABASE_NAME: gaming_discovery_app_development
+
+volumes:
+  postgres_data:
