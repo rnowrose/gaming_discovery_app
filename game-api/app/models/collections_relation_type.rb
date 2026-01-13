@@ -1,0 +1,2 @@
+class CollectionsRelationType < ApplicationRecord
+end

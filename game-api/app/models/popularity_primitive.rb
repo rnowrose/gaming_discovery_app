@@ -1,0 +1,2 @@
+class PopularityPrimitive < ApplicationRecord
+end

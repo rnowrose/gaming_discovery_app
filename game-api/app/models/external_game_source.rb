@@ -1,0 +1,2 @@
+class ExternalGameSource < ApplicationRecord
+end

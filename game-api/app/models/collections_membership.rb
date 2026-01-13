@@ -1,0 +1,2 @@
+class CollectionsMembership < ApplicationRecord
+end
